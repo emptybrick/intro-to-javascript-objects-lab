@@ -367,7 +367,7 @@ Solve Exercise 15 here:
   }
 };
 
-/*
+/*--------------------------------------------------------------------------------------------------------------------------------------------------
 Exercise 16
 1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
 
@@ -393,7 +393,7 @@ function sortParty() {
 };
 
 sortParty()
-// console.log(game.party);
+console.log(game.party);
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------
 Exercise 18
@@ -527,6 +527,7 @@ game.throwPokeBall('aBra');
 game.throwPokeBall('notApokemon');
 game.throwPokeBall('sNoRlax');
 game.throwPokeBall('Beedrill');
+game.throwPokeBall('doesntExist');
 
 console.log("Party:\n", game.party);
 console.log("Items:\n", game.items);
@@ -559,13 +560,51 @@ Solve Exercise 21 here:
 */
 
 // create a function that goes through all the pokedex looking at type and sort into an object of arrays by type and also name the arrays...
+// had to get a lot of help for this, and played around with the function to see how it works and understand it.  again replicating this
+// kind of stuff will be difficult right away i need to see it in more cases in different ways to truly grasp it.
 
-const sortedByType = {
-  grass:
-  fire:
-  water:
-  bug:
-  normal:
-  poison:
+function sortByType() {
+  let sorted = {};
+// defining a new object that can change
+  for (let pokemon of pokedex) {
+    if (!sorted[pokemon.type]) {
+ // if (sorted[pokemon.type] === undefined) {
+ //  sorted[pokemon.type] comes back as the string of the type for the current pokemon iterated in the loop
+      sorted[pokemon.type] = [];
+//    new array under object named sorted [current pokemon.pokemon type] = the string of the type for that pokemon, 
+//    and names a new array as that string
+    }
+    sorted[pokemon.type].push(pokemon);
+// adds pokemon to the array with the type string that matches its type, after creating a new array or if it already exists it goes
+// straight here to push the pokemon data to the array
+  }  
+  return sorted;
+  // need to return the object that was created after the data was added to it, pokemon sorted by type
+};
 
-}
+const sortedPokemon = sortByType(pokedex);
+console.log("Pokemon sorted by type:\n", sortedPokemon);
+
+// not sure what dynamically construct meant, probably do something like i was doing here in the following, but i decided to try to build
+// the function instead
+
+// const sortedByType = {
+//   grass: const grassPokemon = pokedex.filter((pokemon) => {
+//    return pokemon.type === 'grass';
+// });
+//   fire:
+//   water:
+//   bug:
+//   normal:
+//   poison:
+//   electric:
+//   ground:
+//   fairy:
+//   fighting:
+//   psychic:
+//   rock:
+//   ghost:
+//   ice:
+//   dragon: };
+
+// end note: most of these comments were for me as I was going along.. 
